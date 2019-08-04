@@ -1,9 +1,12 @@
 function [ TIMF, R ] = timf( input_image, lmax, c)
 
 %This is the code of FATEMD method
-%Cited paper:
+%Cited papers:
+%1- Riffi, J., Adnane, M. M., Abbad, A., and Tairi, H. (2014). 3D extension of the fast and adaptive bidimensional empirical mode decomposition. Multidim. Syst. Signal Process. 26, 823–834. doi: 10.1007/s11045-014-0283-6
+%2- He, Z., Li, J., Liu, L., and Shen, Y. (2017). Three-dimensional empirical mode decomposition (TEMD): a fast approach motivated by separable filters. Signal Process. 131, 307–319. doi: 10.1016/j.sigpro.2016.08.024
+%3- Moradi, N., Dousty, M., Sotero, R. (2019). Spatiotemporal empirical mode decomposition of resting-state fMRI signals: application to global signal regression, Frontiers in Neuroscience, 13, 736. 
 
-% Input arguments:
+%Input arguments:
 %  input_image - nifti format image
 %  lmax - the maximum number of instrinsic mode functions to find
 %  c - neighbourhood size when searching for local minima and maximum is a cube 2*c+1 voxels on a side.
@@ -40,7 +43,7 @@ for l = 1: lmax,  %Number of IMF
     distq2 = [];
     MINdistq2 = [1];
     MINdistq1 = [1];
-    h2 = zeros ((dim1+2),dim2+2,(dim3+2));  % for max marrix
+    h2 = zeros ((dim1+2),dim2+2,(dim3+2));  % for max matrix
     h1= h2+999999;  %for min matrix, it should be more than 10^+4 (maximum data)
     
     

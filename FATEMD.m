@@ -7,9 +7,9 @@ function [ TIMF, R ] = timf( input_image, lmax, c)
 %3- Moradi, N., Dousty, M., Sotero, R. (2019). Spatiotemporal empirical mode decomposition of resting-state fMRI signals: application to global signal regression, Frontiers in Neuroscience, 13, 736. 
 
 %Input arguments:
-%  input_image - nifti format image
-%  lmax - the maximum number of instrinsic mode functions to find
-%  c - neighbourhood size when searching for local minima and maximum is a cube 2*c+1 voxels on a side.
+%  input_image - nifti format 3D image-fMRI image is splited into its individual 3D images or volumes. 
+%  lmax - the maximum number of informative spatial instrinsic mode functions to find
+%  c - neighbourhood size when searching for local minima and maximum in a cube of 2*c+1 voxels on a side.
 
 
 timf_start_time=tic;
@@ -26,7 +26,7 @@ ONE = ones (dim1 , dim2 , dim3);
 %M = round((sqrt((dim1)^2 +(dim2)^2 +(dim3)^2 ))/2)   %margin
 
 %%%
-for l = 1: lmax,  %Number of IMF
+for l = 1: lmax,  %Number of spatial IMF
 
   l_start_time=tic;
   message=[ 'Starting loop for l = ' num2str(l) ];
@@ -47,7 +47,7 @@ for l = 1: lmax,  %Number of IMF
     h1= h2+999999;  %for min matrix, it should be more than 10^+4 (maximum data)
     
     
-%     c=1;
+%     c=1; %Default value
      M = c;
        
     h1((M+1):(M+dim1), (M+1):(M+dim2), (M+1):(M+dim3)) = R;
@@ -62,7 +62,7 @@ for l = 1: lmax,  %Number of IMF
 
   maxmin_start_time=tic;
 
-    for x = (1+c) : (dim1+c) %90
+    for x = (1+c) : (dim1+c) %For normalized fMRI with 2mm resolution= 90
         for y = (1+c) : (dim2+c)  %108
             for z = (1+c) : (dim3+c) , %90
                 if (sum(sum(sum(max(max(max(h2(x-c : x+c , y-c : y+c , z-c: z+c)))))) == h2(x-c : x+c , y-c : y+c , z-c: z+c)))<2,

@@ -1,10 +1,11 @@
 function [ TIMF, R ] = timf( input_image, lmax, c)
 
-%This is the code of FATEMD method
-%Cited papers:
+% This code is written based on the FATEMD (or 3D-EMD) method in the following papers:
 %1- Riffi, J., Adnane, M. M., Abbad, A., and Tairi, H. (2014). 3D extension of the fast and adaptive bidimensional empirical mode decomposition. Multidim. Syst. Signal Process. 26, 823–834. doi: 10.1007/s11045-014-0283-6
 %2- He, Z., Li, J., Liu, L., and Shen, Y. (2017). Three-dimensional empirical mode decomposition (TEMD): a fast approach motivated by separable filters. Signal Process. 131, 307–319. doi: 10.1016/j.sigpro.2016.08.024
-%3- Moradi, N., Dousty, M., Sotero, R. (2019). Spatiotemporal empirical mode decomposition of resting-state fMRI signals: application to global signal regression, Frontiers in Neuroscience, 13, 736. 
+
+% Should you use this code, please cite the following paper along with the above montioned papers:
+%- Moradi, N., Dousty, M., Sotero, R. (2019). Spatiotemporal empirical mode decomposition of resting-state fMRI signals: application to global signal regression, Frontiers in Neuroscience, 13, 736. 
 
 %Input arguments:
 %  input_image - nifti format 3D image-fMRI image is splited into its individual 3D images or volumes. 
